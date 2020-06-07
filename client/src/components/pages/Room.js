@@ -153,7 +153,7 @@ class Room extends Component {
 
         socket.on("startGame", (data) => {
             if(this.props.roomID !== data.roomID) return;
-            this.setState({roundNum: data.roundNum, status: "inProgress", answered: false, roomAnswers: [], timeToStart: 5})
+            this.setState({roundNum: data.roundNum, status: "inProgress", answered: false, roomAnswers: [], timeToStart: 3})
           
 
         })
@@ -168,7 +168,7 @@ class Room extends Component {
                 startTime: data.startTime, 
                 url: data.url,
                 answer: data.answer,
-                timeToStart: 5,
+                timeToStart: 3,
                 
             })
 
