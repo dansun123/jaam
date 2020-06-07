@@ -276,12 +276,12 @@ let finishGame = (roomID, possibleRoundNum, gameID) => {
       })
   }
   else {
-    socket.getIo().emit("finishGame", {answer: songs[roundNum-1], roomID: roomID, url: getURL(songs[roundNum]),  startTime: fromNow(5000), endTime: fromNow(35000)})
+    socket.getIo().emit("finishGame", {answer: songs[roundNum-1], roomID: roomID, url: getURL(songs[roundNum]),  startTime: fromNow(3000), endTime: fromNow(33000)})
       Room.findOne({roomID: roomID}).then((room) => {
         room.status = "gameFinished"
         room.song = songs[roundNum]
-        room.startTime = fromNow(5000)
-        room.endTime = fromNow(35000)
+        room.startTime = fromNow(3000)
+        room.endTime = fromNow(33000)
         room.markModified("song")
         room.save()
       })
@@ -289,7 +289,7 @@ let finishGame = (roomID, possibleRoundNum, gameID) => {
       setTimeout(() => {
         gameData[roomID]["roundNum"] = gameData[roomID]["roundNum"]+1
         startGame(roomID)
-      }, 5000)
+      }, 3000)
   }
 
 
