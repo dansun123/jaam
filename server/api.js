@@ -373,8 +373,8 @@ router.post("/newMessage", (req, res) => {
   let messageText = req.body.message
   if(req.body.systemMessage) systemMessage = true
   else {
-    let roundNum = gameData[req.body.roomID]["roundNum"]
-    let title = gameData[req.body.roomID]["songs"][roundNum-1].title
+    let roundNum = (req.body.inGame ? gameData[req.body.roomID]["roundNum"] : 1)
+    let title = (req.body.inGame ? gameData[req.body.roomID]["songs"][roundNum-1].title : "")
     let curWaiting = (req.body.inGame ? gameData[req.body.roomID]["waitingOn"] : 0)
     if((curWaiting >= 1) && req.body.inGame && ((similarity(messageText, title) > 0.7) || (similarity(messageText.toLowerCase().replace("fuck", "forget"), title) > 0.7) ||
     (similarity(messageText.toLowerCase().replace(" and ", " & "), title) > 0.7))) {

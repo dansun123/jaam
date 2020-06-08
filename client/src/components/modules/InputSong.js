@@ -53,9 +53,9 @@ class InputSong extends React.Component {
         // this.sendMessage();
         get("/api/songLyrics", {title: this.state.title, artist: this.state.artist}).then((response) => {
             get("/api/songKaraoke", {title: response.title+" "+response.primaryArtist}).then((res) => {
-                get("/api/songUrl", {title: response.title+" "+response.primaryArtist}).then((res1) => {
+                get("/api/songUrl", {title: this.state.title}).then((res1) => {
                     this.setState({
-                        title: response.title, 
+                        title: this.state.title, 
                         artist: response.primaryArtist,
                         // featuredArtists: response.featuredArtists,
                         artUrl: response.artUrl,
